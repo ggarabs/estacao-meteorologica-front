@@ -1,0 +1,295 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --dark-background: hsl(232, 14%, 11%);
+    --card-color: hsl(231, 9%, 15%);
+    --bar-color: hsl(225, 2%, 49%);
+}
+
+body {
+    font-family: Nunito, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--dark-background);
+}
+
+header {
+    display: flex;
+    align-items: center;
+    flex: 1 0 -1rem;
+}
+
+header>img {
+    width: 30%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+}
+
+main {
+    display: flex;
+    margin-top: 1.5rem;
+    flex: 1 0 auto;
+    justify-content: center;
+    padding: 0.75rem;
+    gap: 2rem;
+}
+
+main>section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    width: 30vw;
+    border-radius: 1.25rem;
+    background-color: var(--card-color);
+}
+
+main>section>div {
+    padding: 20px 10px;
+    height: 50%;
+    width: 100%;
+}
+
+main>section>div>h2 {
+    text-transform: uppercase;
+}
+
+#weather-status {
+    display: flex;
+    flex-direction: column;
+}
+
+.location-title {
+    display: flex;
+    align-items: center;
+    height: 17%;
+    flex: 0 0 auto;
+}
+
+.location-title>img {
+    height: 60%;
+    object-fit: cover;
+    object-position: left;
+}
+
+#green-bar {
+    margin-right: 3%;
+}
+
+.location-title>h2 {
+    text-transform: capitalize;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.temp-main-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex: 4 0 auto;
+    font-size: 4rem;
+    font-weight: 700;
+}
+
+.temp-main-content>img {
+    width: 50%;
+}
+
+.temp-footer {
+    display: flex;
+    align-items: flex-end;
+    height: 20%;
+    padding: 2px 15px;
+    color: hsla(0, 0%, 100%, 0.46);
+    font-size: 1rem;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+.card>h2 {
+    font-weight: 500;
+}
+
+.card-information-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 auto;
+}
+
+.card-information-container>p {
+    font-size: 4rem;
+    font-weight: 700;
+}
+
+.unit {
+    font-size: 2.8rem;
+}
+
+.card-footer {
+    display: flex;
+    align-items: center;
+    height: 20%;
+    gap: 10px;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.card-footer>img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+#estability-bar {
+    height: auto;
+    padding-right: 0.7rem;
+}
+
+#pressure-arrow {
+    width: 10%;
+}
+
+section>hr {
+    width: 90%;
+}
+
+footer {
+    min-height: 5vh;
+}
+
+@media(min-height: 720px) {
+    main>section {
+        border-radius: 2.5rem;
+    }
+
+    .location-title>h2 {
+        font-size: 1.8rem;
+    }
+
+    .temp-main-content {
+        font-size: 5.5rem;
+    }
+
+    .temp-footer {
+        padding-left: 2rem;
+        font-size: 1.3rem;
+    }
+
+    .card {
+        padding: 1.75rem;
+    }
+
+    .card>h2 {
+        font-size: 1.75rem;
+        font-weight: 600;
+    }
+
+    .card-information-container>p {
+        font-size: 4.5rem;
+    }
+
+    .card-footer {
+        font-size: 1.75rem;
+        font-weight: 300;
+    }
+
+    #estability-bar {
+        height: auto;
+        width: 15%;
+    }
+
+    .unit {
+        font-size: 3rem;
+    }
+
+    hr {
+        height: 0.2rem;
+        background-color: var(--bar-color);
+        border: none;
+        border-radius: 999px;
+    }
+}
+
+@media(min-height: 920px) {
+    .location-title>h2 {
+        font-size: 2rem;
+    }
+
+    .temp-main-content {
+        font-size: 6rem;
+    }
+
+    .temp-footer {
+        font-size: 1.8rem;
+    }
+
+    .card>h2 {
+        font-size: 2.5rem;
+        font-weight: 600;
+    }
+
+    .card-information-container>p {
+        font-size: 7rem;
+    }
+
+    .card-footer {
+        font-size: 2.5rem;
+    }
+
+    .unit {
+        font-size: 5rem;
+    }
+
+    hr {
+        height: 0.3rem;
+    }
+}
+
+/* talvez inserir um border radius responsivo na próxima*/
+
+@media (min-height: 1600px) {
+    .location-title>h2 {
+        font-size: 3rem;
+    }
+
+    .temp-main-content {
+        font-size: 11rem;
+    }
+
+    .temp-footer {
+        font-size: 2.5rem;
+    }
+
+    .card {
+        padding: 3rem;
+    }
+
+    .card>h2 {
+        font-size: 3.5rem;
+        font-weight: 600;
+    }
+
+    .card-information-container>p {
+        font-size: 11rem;
+    }
+
+    .card-footer {
+        font-size: 3.5rem;
+        font-weight: 300;
+    }
+
+    .unit {
+        font-size: 7rem;
+    }
+}
