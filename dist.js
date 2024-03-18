@@ -1,4 +1,5 @@
 var weatherData = {};
+var weatherFlutuation = {};
 
 // Função para buscar a lista de caminhos das imagens da API
 function fetchWeatherData() {
@@ -11,8 +12,8 @@ function fetchWeatherData() {
       return response.json();
     })
     .then((data) => {
-      weatherData = data;
-      console.log(weatherData);
+      weatherData = data.data;
+      weatherFlutuation = data.flutuation;
       updateWeatherDashboard();
     })
     .catch((error) => {
@@ -20,6 +21,11 @@ function fetchWeatherData() {
     });
 }
 
+function getThermalSensation(temperature, windSpeed) {
+  return 33 + ((10 * Math.sqrt(windSpeed) + 10.45 - windSpeed) *
+    (temperature - 33)) /
+    22.0;
+}
 
 function updateWeatherDashboard() {
   try {
@@ -30,10 +36,12 @@ function updateWeatherDashboard() {
     var windDirectionArrow = document.getElementById("arrowImg");
     var feelsLike = document.getElementById("feels-like");
     var feelsLikeVariation = document.getElementById("feels-like-variation");
+    var feelsLikeVariationImg = document.getElementById("estability-bar")
     var relativeHumidity = document.getElementById("relative-humidity");
     var relativeHumidityQuality = document.getElementById("relative-humidity-variation");
     var pressure = document.getElementById("pressure");
     var pressureVariation = document.getElementById("pressure-variation");
+    var pressureVariationImg = document.getElementById("pressure-arrow")
 
     var updatedTemperature = Math.round(weatherData.temperature);
     temperature.innerText = "".concat(updatedTemperature, "\xBAC");
@@ -78,12 +86,7 @@ function updateWeatherDashboard() {
     ];
     windDirection.innerText = cardinalDirections[mapDirection];
     windDirectionArrow.style.transform = "rotate(".concat(direction, "deg)");
-    var thermalSensation =
-      33 +
-      ((10 * Math.sqrt(updatedWindSpeed) + 10.45 - updatedWindSpeed) *
-        (updatedTemperature - 33)) /
-        22.0;
-    feelsLike.innerText = "".concat(Math.round(thermalSensation), "\xBAC");
+    feelsLike.innerText = "".concat(Math.round(getThermalSensation(updatedTemperature, updatedWindSpeed)), "\xBAC");
     relativeHumidity.innerText = "".concat(
       Math.round(weatherData.humidity_rel),
       "%"
@@ -98,6 +101,39 @@ function updateWeatherDashboard() {
       " <span class='unit'>hPa</span></p>"
     );
     pressure.innerHTML = newPressureTag;
+
+    console.log(weatherFlutuation)
+
+    if (weatherFlutuation.pressureStatus === "stable") {
+      pressureVariation.innerText = "Estável"
+      pressureVariationImg.src = "./img/Line 9.png"
+      pressureVariationImg.style.height = "auto"
+    } else if (weatherFlutuation.pressureStatus === "rising") {
+      pressureVariation.innerText = "Subindo"
+      pressureVariationImg.style.transform = "rotate(180deg)";
+      pressureVariationImg.style.width = "10%"
+    } else {
+      pressureVariation.innerText = "Caindo"
+      pressureVariationImg.style.transform = "rotate(0deg)";
+      pressureVariationImg.style.width = "10%"
+    }
+
+    if (weatherFlutuation.tempStatus === "stable") {
+      feelsLikeVariation.innerText = "Estável"
+      feelsLikeVariationImg.src = "./img/Line 9.png"
+      feelsLikeVariationImg.style.height = "auto"
+    } else if (weatherFlutuation.tempStatus === "rising") {
+      feelsLikeVariation.innerText = "Subindo"
+      feelsLikeVariationImg.style.transform = "rotate(180deg)";
+      feelsLikeVariationImg.style.width = "10%"
+    } else {
+      feelsLikeVariation.innerText = "Caindo"
+      feelsLikeVariationImg.style.transform = "rotate(0deg)";
+      feelsLikeVariationImg.style.width = "20%"
+    }
+
+    
+
   } catch (err) {
     console.log(err);
   }

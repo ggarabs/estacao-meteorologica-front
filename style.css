@@ -14,11 +14,13 @@ body {
     font-family: Nunito Sans, sans-serif;
     display: flex;
     flex-direction: column;
+    align-items: center;
     min-height: 100vh;
     background-color: var(--dark-background);
 }
 
 header {
+    width: 95%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -29,9 +31,10 @@ header>img {
     width: 30%;
     height: auto;
     object-fit: cover;
-    object-position: center;
+    object-position: right;
     padding-bottom: 1rem;
-    min-width: 14rem;
+    min-width: 11rem;
+    margin-left: -0.6rem;
 }
 
 #logo-mackleaps {
@@ -39,9 +42,9 @@ header>img {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-right: 3rem;
     text-transform: uppercase;
     color: #d3d3d3;
+    padding-right: 1rem;
     font-size: 1.2rem;
     font-family: Outfit, sans-serif;
   }  
@@ -92,6 +95,7 @@ main>section>div>h2 {
     height: 60%;
     object-fit: cover;
     object-position: left;
+    min-height: 1.5rem;
 }
 
 #green-bar {
@@ -100,7 +104,7 @@ main>section>div>h2 {
 
 .location-title>h2 {
     text-transform: capitalize;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 500;
 }
 
@@ -115,7 +119,7 @@ main>section>div>h2 {
 }
 
 .temp-main-content>img {
-    width: 50%;
+    width: 35%;
 }
 
 .temp-footer {
@@ -278,8 +282,6 @@ footer {
     }
 }
 
-/* talvez inserir um border radius responsivo na próxima*/
-
 @media (min-height: 1600px) {
     .location-title>h2 {
         font-size: 3rem;
@@ -316,13 +318,25 @@ footer {
     }
 }
 
-@media(max-width: 1150px) {
+@media(max-width: 1090px) {
+    #logo-mackleaps > img{
+        width: 3.5rem;
+    }
+
     .temp-main-content {
         font-size: 3.5rem;
     }
 
     .location-title > h2 {
         font-size: 1.1rem;
+    }
+
+    #weather-status {
+        gap: 2rem;
+    }
+
+    .card {
+        gap: 1.5rem;
     }
 
     .card-information-container>p {
@@ -336,28 +350,6 @@ footer {
     .card>h2 {
         font-size: 1.3rem;
     }
-}
-
-@media(max-width: 1000px){
-    #logo-mackleaps > img{
-        width: 3.5rem;
-    }
-
-    #weather-status {
-        gap: 2rem;
-    }
-
-    .card {
-        gap: 1.5rem;
-    }
-
-    #logo-mackleaps > h2 {
-        font-size: 1.2rem;
-    }
-
-    .temp-footer > p {
-        font-size: 1rem;
-    }
 
     .card-footer > p {
         font-size: 1.4rem;
@@ -366,25 +358,39 @@ footer {
 
 }
 
+@media(max-width: 1000px){
+    #logo-mackleaps > h2 {
+        font-size: 1.2rem;
+    }
+
+    .temp-footer > p {
+        font-size: 1rem;
+    }
+}
+
 @media(max-width: 860px){
     header > img {
         padding-top: 0.8rem;
     }
+
+    .location-title > img {
+        height: 1.6rem;
+    }
+
+    hr {
+        height: 0.2rem;
+    }
+
 }
 
 @media(max-width: 650px){
     #logo-mackleaps {
         transform: scale(90%);
-        margin-right: -1.5rem;
     }
 
     .location-title {
         display: flex;
         justify-content: center;
-    }
-
-    .location-title > img {
-        height: 1.6rem;
     }
 
     .temp-main-content > img {
@@ -419,4 +425,14 @@ footer {
         height: 2rem;
     }
 
+}
+
+@media(max-width: 450px){
+    main > section {
+        min-width: 19rem;
+    }
+    #logo-mackleaps {
+        padding-top: 4px;
+        padding-right: 0;
+    }
 }
