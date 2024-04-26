@@ -15,46 +15,48 @@
 <body>
     <header>
         <img src="./img/logo-mack.png" alt="logotipo mackenzie">
-        <div id="logo-mackleaps">
-            <img src="./img/Logo Mackleaps.svg" alt="logo-mackleaps" />
-            <h2>Mackleaps</h2>
-        </div>
+        <a href="http://mackleaps.mackenzie.br/" target="_blank">
+            <div id="logo-mackleaps">
+                <img src="./img/Logo Mackleaps.svg" alt="logo-mackleaps" />
+                <h2>Mackleaps</h2>
+            </div>    
+        </a>
     </header>
     <main>
         <section id="weather-status">
-            <div class="location-title">
+            <div id="location-title">
                 <img src="./img/Location.png" alt="location">
                 <img id="green-bar" src="./img/Line 2.png" alt="">
                 <h2>Mackenzie - Prédio 45</h2>
             </div>
             <div class="temp-main-content">
                 <img src="./img/Termometro.svg" alt="">
-                <p id="temperature">25ºC</p>
+                <p id="temperature">-ºC</p>
             </div>
-            <div class="temp-footer">
-                <p id="information-time">Ultima atualização: 12:15PM</p>
+            <div id="temp-footer">
+                <p id="information-time">Ultima atualização: -:-PM</p>
             </div>
         </section>
         <section>
             <div class="card">
                 <h2>Vento</h2>
                 <div class="card-information-container">
-                    <p id="wind-speed">12 <span class="unit">km/h</span> </p>
+                    <p id="wind-speed">- <span class="unit">km/h</span> </p>
                 </div>
                 <div class="card-footer">
-                    <img src="./img/Near Me.png" id="arrowImg" alt="seta">
-                    <p id="wind-direction">SE</p>
+                    <img id="arrowImg" src="./img/Near Me.png" alt="seta">
+                    <p id="wind-direction">-</p>
                 </div>
             </div>
             <hr>
             <div class="card">
                 <h2>Sensação Térmica</h2>
                 <div class="card-information-container">
-                    <p id="feels-like">23ºC</p>
+                    <p id="feels-like">-ºC</p>
                 </div>
                 <div class="card-footer">
-                    <img id="estability-bar" src="./img/Arrow.png" alt="seta">
-                    <p id="feels-like-variation">Estável</p>
+                    <img id="thermal-sensation-icon" class="stable2" alt="seta">
+                    <p id="feels-like-variation">-</p>
                 </div>
             </div>
         </section>
@@ -62,22 +64,22 @@
             <div class="card">
                 <h2 id="humidity-label">Umidade relativa</h2>
                 <div class="card-information-container">
-                    <p id="relative-humidity">75%</p>
+                    <p id="relative-humidity">-%</p>
                 </div>
                 <div class="card-footer">
-                    <img src="./img/Line 10.png" alt="seta">
-                    <p id="relative-humidity-variation">Alta</p>
+                    <img id="humidity-icon" class="stable1" alt="seta">
+                    <p id="relative-humidity-variation">-</p>
                 </div>
             </div>
             <hr>
             <div class="card">
                 <h2>Pressão</h2>
                 <div class="card-information-container">
-                    <p id="pressure">1021 <span class="unit">hPa</span></p>
+                    <p id="pressure">- <span class="unit">hPa</span></p>
                 </div>
                 <div class="card-footer">
-                    <img id="pressure-arrow" src="./img/Arrow.png" alt="seta">
-                    <p id="pressure-variation">Caindo</p>
+                    <img id="pressure-icon" class="stable2" alt="seta">
+                    <p id="pressure-variation">-</p>
                 </div>
             </div>
         </section>
