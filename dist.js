@@ -2,7 +2,7 @@ var weatherData = {};
 var weatherFlutuation = {};
 
 // Função para buscar a lista de caminhos das imagens da API
-function fetchWeatherData() {
+async function fetchWeatherData() {
   const apiUrl = `https://mackleaps.mackenzie.br/meteorologiaapi/reports/latest`;
   return fetch(apiUrl)
     .then((response) => {
@@ -22,9 +22,11 @@ function fetchWeatherData() {
 }
 
 function getThermalSensation(temperature, windSpeed) {
-  return 33 + ((10 * Math.sqrt(windSpeed) + 10.45 - windSpeed) *
-    (temperature - 33)) /
-    22.0;
+  return (
+    33 +
+    ((10 * Math.sqrt(windSpeed) + 10.45 - windSpeed) * (temperature - 33)) /
+      22.0
+  );
 }
 
 function updateTemperatureCard() {
@@ -37,17 +39,19 @@ function updateTemperatureCard() {
   temperature.innerText = "".concat(updatedTemperature, "\xBAC");
   if (period === "PM") {
     updatedTime = (hours != 12 ? hours - 12 : 12) + updatedTime.substring(2, 5);
-    informationTime.innerText = "Ultima atualiza\xE7\xE3o: ".concat(updatedTime).concat(period);
+    informationTime.innerText = "Ultima atualiza\xE7\xE3o: "
+      .concat(updatedTime)
+      .concat(period);
   }
   return updatedTemperature;
 }
 
-function updateWindCard(){
+function updateWindCard() {
   var windSpeed = document.getElementById("wind-speed");
   var windDirection = document.getElementById("wind-direction");
   var windDirectionArrow = document.getElementById("arrowImg");
   var updatedWindSpeed = Math.round(weatherData.wind_speed * 3.6);
-  updatedWindSpeed = updatedWindSpeed <= 30.0 ? updatedWindSpeed : '-';
+  updatedWindSpeed = updatedWindSpeed <= 30.0 ? updatedWindSpeed : "-";
   var newWindSpeedTag = "<p id='wind-speed'>".concat(
     updatedWindSpeed,
     " <span class='unit'>km/h</span></p>"
@@ -80,31 +84,36 @@ function updateWindCard(){
   return updatedWindSpeed;
 }
 
-function updateThermalSensation(updatedTemperature, updatedWindSpeed){
+function updateThermalSensation(updatedTemperature, updatedWindSpeed) {
   var feelsLike = document.getElementById("feels-like");
   var feelsLikeVariation = document.getElementById("feels-like-variation");
   var feelsLikeVariationImg = document.getElementById("thermal-sensation-icon");
-  feelsLike.innerText = "".concat(Math.round(getThermalSensation(updatedTemperature, updatedWindSpeed)), "\xBAC");
+  feelsLike.innerText = "".concat(
+    Math.round(getThermalSensation(updatedTemperature, updatedWindSpeed)),
+    "\xBAC"
+  );
   if (weatherFlutuation.tempStatus === "stable") {
-    feelsLikeVariation.innerText = "Estável"
-    feelsLikeVariationImg.src = "./img/Line 9.png"
+    feelsLikeVariation.innerText = "Estável";
+    feelsLikeVariationImg.src = "./img/Line 9.png";
     feelsLikeVariationImg.className = "stable2";
   } else if (weatherFlutuation.tempStatus === "rising") {
-    feelsLikeVariation.innerText = "Subindo"
-    feelsLikeVariationImg.src = "./img/Arrow.png"
+    feelsLikeVariation.innerText = "Subindo";
+    feelsLikeVariationImg.src = "./img/Arrow.png";
     feelsLikeVariationImg.className = "rising";
   } else {
-    feelsLikeVariation.innerText = "Caindo"
-    feelsLikeVariationImg.src = "./img/Arrow.png"
+    feelsLikeVariation.innerText = "Caindo";
+    feelsLikeVariationImg.src = "./img/Arrow.png";
     feelsLikeVariationImg.className = "dropping";
   }
 }
 
-function updateRelativeHumidity(){
+function updateRelativeHumidity() {
   var relativeHumidity = document.getElementById("relative-humidity");
-  var relativeHumidityVariation = document.getElementById("relative-humidity-variation");
+  var relativeHumidityVariation = document.getElementById(
+    "relative-humidity-variation"
+  );
   var relativeHumidityVariationImg = document.getElementById("humidity-icon");
-  weatherData.humidity_rel = 50
+  weatherData.humidity_rel = 50;
   relativeHumidity.innerText = "".concat(
     Math.round(weatherData.humidity_rel),
     "%"
@@ -122,10 +131,9 @@ function updateRelativeHumidity(){
     relativeHumidityVariationImg.src = "./img/Arrow.png";
     relativeHumidityVariationImg.className = "dropping";
   }
-
 }
 
-function updatePressure(){
+function updatePressure() {
   var pressure = document.getElementById("pressure");
   var pressureVariation = document.getElementById("pressure-variation");
   var pressureVariationImg = document.getElementById("pressure-icon");
@@ -135,16 +143,16 @@ function updatePressure(){
   );
   pressure.innerHTML = newPressureTag;
   if (weatherFlutuation.pressureStatus === "stable") {
-    pressureVariation.innerText = "Estável"
-    pressureVariationImg.src = "./img/Line 9.png"
+    pressureVariation.innerText = "Estável";
+    pressureVariationImg.src = "./img/Line 9.png";
     pressureVariationImg.className = "stable2";
   } else if (weatherFlutuation.pressureStatus === "rising") {
-    pressureVariation.innerText = "Subindo"
-    pressureVariationImg.src = "./img/Arrow.png"
+    pressureVariation.innerText = "Subindo";
+    pressureVariationImg.src = "./img/Arrow.png";
     pressureVariationImg.className = "rising";
   } else {
-    pressureVariation.innerText = "Caindo"
-    pressureVariationImg.src = "./img/Arrow.png"
+    pressureVariation.innerText = "Caindo";
+    pressureVariationImg.src = "./img/Arrow.png";
     pressureVariationImg.className = "dropping";
   }
 }
@@ -162,3 +170,7 @@ function updateWeatherDashboard() {
 }
 
 fetchWeatherData();
+const refresh = () => {
+  setInterval(fetchWeatherData, 1000 * 60 * 10);
+};
+refresh();
